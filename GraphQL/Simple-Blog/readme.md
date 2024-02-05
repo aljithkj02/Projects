@@ -1,11 +1,11 @@
 # Plan
 
 ## Server
-- Create a Basic server
 - Create Database schema
 - Migrate DB
 - Create graphql type definitions
 - Create graphql resolvers
+- Create a Basic server
 - Create Login & Register mutations
 - Password hashing
 - Implement JWT authentication
