@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - ~/db/psql/simple-blog:/var/lib/postgresql
+    environment:
+      POSTGRES_USER: jithu
+      POSTGRES_PASSWORD: jithu
+      POSTGRES_DB: simpleBlog
