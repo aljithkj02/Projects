@@ -3,6 +3,7 @@
 ## Server
 - Create a Basic server
 - Create Database schema
+- Migrate DB
 - Create graphql type definitions
 - Create graphql resolvers
 - Create Login & Register mutations
