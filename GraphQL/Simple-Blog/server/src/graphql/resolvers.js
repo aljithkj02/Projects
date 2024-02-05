@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { loginUser } from '../controllers/authController.js';
+import { loginUser, registerUser } from '../controllers/authController.js';
 
 const prisma = new PrismaClient();
 
@@ -25,9 +25,13 @@ export const resolvers = {
     Mutation: {
         async login(_, { Input }) {
             const { email, password } = Input;
-            console.log({ email, password });
             
             return await loginUser({ email, password });
+        },
+        async register(_, { Input }) {
+            const { name, email, password } = Input;
+
+            return registerUser({ name, email, password });
         }
     }
 }
