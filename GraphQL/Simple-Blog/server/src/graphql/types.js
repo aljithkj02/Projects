@@ -8,7 +8,6 @@ export const typeDefs = gql`
         id ID!
         name String!
         email String!
-        password  String!
         avatarUrl String
         createdAt Date
         updatedAt Date
