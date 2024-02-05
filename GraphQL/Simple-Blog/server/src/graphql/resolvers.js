@@ -10,7 +10,7 @@ export const resolvers = {
         async post(_, { id }) {
             const post = await prisma.post.findUnique({
                 where: {
-                    id
+                    id: Number(id)
                 }
             })
 
