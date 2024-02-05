@@ -31,8 +31,8 @@ export const typeDefs = gql`
 
     # Mutations
     type Mutation {
-        login(Input: LoginInput): AuthResponse
-        register(Input: RegisterInput): AuthResponse
+        login(Input: LoginInput!): AuthResponse
+        register(Input: RegisterInput!): AuthResponse
     }
 
     # Inputs
