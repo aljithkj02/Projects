@@ -5,6 +5,7 @@ import cors from 'cors'
 
 import { typeDefs } from './graphql/types.js';
 import { resolvers } from './graphql/resolvers.js'
+import { authMiddleware } from './middlewares/authMiddleware.js';
 
 config();
 
@@ -13,15 +14,17 @@ const startServer = async () => {
     const server = new ApolloServer({
         typeDefs,
         resolvers,
-        context: ({ req }) => ({ req })
+        context: ({ req }) => ({ req }),
     })
 
     const app = express();
     await server.start();
 
-    server.applyMiddleware({ app })
-
     app.use(cors());
+    app.use(express.json());
+    app.use('/graphql', authMiddleware);
+
+    server.applyMiddleware({ app })
 
     app.get('/', (req, res) => {
         res.json({
