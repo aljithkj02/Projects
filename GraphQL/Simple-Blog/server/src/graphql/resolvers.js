@@ -5,8 +5,16 @@ const prisma = new PrismaClient();
 
 export const resolvers = {
     Query: {
-        async posts() {
-            return await prisma.post.findMany();
+        async posts(_, __, context) {
+            const id = context.req.user.id;
+
+            return await prisma.post.findMany({
+                where: {
+                    userId: {
+                        not: id
+                    }
+                }
+            });
         },
         async post(_, { id }) {
             const post = await prisma.post.findUnique({
