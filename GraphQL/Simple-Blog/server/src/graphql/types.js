@@ -33,6 +33,7 @@ export const typeDefs = gql`
     type Mutation {
         login(Input: LoginInput!): AuthResponse
         register(Input: RegisterInput!): AuthResponse
+        createPost(Input: CreatePostInput!): Response
     }
 
     # Inputs
@@ -47,11 +48,21 @@ export const typeDefs = gql`
         password: String!
     }
 
+    input CreatePostInput {
+        content: String!
+        imageUrl: String
+    }
+
     #Responses
     type AuthResponse {
         status: Boolean!
         message: String!
         token: String!
+    }
+
+    type Response {
+        status: Boolean!
+        message: String!
     }
 `
   
