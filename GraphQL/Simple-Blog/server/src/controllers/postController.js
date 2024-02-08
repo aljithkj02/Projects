@@ -22,3 +22,18 @@ export const createPost = async ({ content, imageUrl, userId }) => {
         throw new Error(error.message);
     }
 }
+
+export const getPosts = async ({ id }) => {
+    try {
+        const posts = await prisma.post.findMany({
+            where: {
+                userId: {
+                    not: id
+                }
+            }
+        })
+        return posts;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
