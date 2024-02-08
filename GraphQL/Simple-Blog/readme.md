@@ -10,4 +10,16 @@
 - Password hashing
 - Implement JWT authentication
 - Add authentication middleware
-- Create mutations for create, update and delete post
+- Create mutations for create, update and delete post   --> Update & Delete pending
+
+## Client
+- Create the basic React-App
+- Setup routing
+- Setup Material-UI
+- Setup Context-API
+- Create Private Router
+- Create Login page
+- Create Register page
+- Setup apollo-client
+- Create Home page
+- Setup cloudinary
