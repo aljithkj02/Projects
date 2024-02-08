@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { loginUser, registerUser } from '../controllers/authController.js';
+import { createPost } from '../controllers/postController.js';
 
 const prisma = new PrismaClient();
 
@@ -39,7 +40,13 @@ export const resolvers = {
         async register(_, { Input }) {
             const { name, email, password } = Input;
 
-            return registerUser({ name, email, password });
+            return await registerUser({ name, email, password });
+        },
+        async createPost(_, { Input }, context) {
+            const { content, imageUrl } = Input;
+            const userId = context.req.user.id;
+
+            return await createPost({ content, imageUrl, userId });
         }
     }
 }
