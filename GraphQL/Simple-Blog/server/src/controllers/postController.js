@@ -37,3 +37,21 @@ export const getPosts = async ({ id }) => {
         throw new Error(error.message);
     }
 }
+
+export const getPostById = async ({ id }) => {
+    try {
+        const post = await prisma.post.findUnique({
+            where: {
+                id: Number(id)
+            }
+        })
+
+        if(!post) {
+            throw new Error('No such post exist!');
+        }
+
+        return post;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
