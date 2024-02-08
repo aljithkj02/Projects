@@ -66,3 +66,14 @@ export const registerUser = async ({ name, email, password }) => {
         throw new Error(error.message);
     }
 }
+
+export const getUser = async ({ id }) => {
+    try {
+        const user = await prisma.user.findUnique({
+            where: { id }
+        })
+        return user;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
