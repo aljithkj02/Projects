@@ -3,8 +3,8 @@ import jwt from "jsonwebtoken";
 export const authMiddleware = (req, res, next) => {
     try {
         const operation = req.body?.operationName;
-
-        if (['Login', 'Register'].includes(operation)) {
+        
+        if (['Login', 'Register', undefined].includes(operation)) {
             return next();
         }
 
