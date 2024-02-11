@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { getUser, loginUser, registerUser } from '../controllers/authController.js';
-import { createPost, getPostById, getPosts } from '../controllers/postController.js';
+import { createPost, getPostById, getPosts, updatePost } from '../controllers/postController.js';
 
 const prisma = new PrismaClient();
 
@@ -36,6 +36,12 @@ export const resolvers = {
             const userId = context.req.user.id;
 
             return await createPost({ content, imageUrl, userId });
+        },
+        async editPost(_, { Input }, context) {
+            const { content, imageUrl, postId } = Input;
+            const userId = context.req.user.id;
+
+            return await updatePost({ content, imageUrl, postId: +postId, userId: +userId });
         }
     }
 }

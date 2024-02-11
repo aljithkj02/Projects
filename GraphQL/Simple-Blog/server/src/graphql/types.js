@@ -34,6 +34,7 @@ export const typeDefs = gql`
         login(Input: LoginInput!): AuthResponse
         register(Input: RegisterInput!): AuthResponse
         createPost(Input: CreatePostInput!): Response
+        editPost(Input: EditPostInput!): Response
     }
 
     # Inputs
@@ -49,6 +50,12 @@ export const typeDefs = gql`
     }
 
     input CreatePostInput {
+        content: String!
+        imageUrl: String
+    }
+
+    input EditPostInput {
+        postId: ID!
         content: String!
         imageUrl: String
     }
