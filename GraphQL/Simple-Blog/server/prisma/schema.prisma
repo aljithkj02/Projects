@@ -28,4 +28,6 @@ model Post {
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, id])
 }
