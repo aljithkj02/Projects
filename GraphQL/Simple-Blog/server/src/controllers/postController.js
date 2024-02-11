@@ -55,3 +55,35 @@ export const getPostById = async ({ id }) => {
         throw new Error(error.message);
     }
 }
+
+export const updatePost = async ({ content, imageUrl, postId, userId }) => {
+    try {
+        const post = await prisma.post.findUnique({
+            where: {
+                userId_id: {
+                    userId,
+                    id: postId
+                }
+            }
+        })
+
+        if(!post) {
+            throw new Error('No such post exist!');
+        }
+
+        await prisma.post.update({
+            where: { id: postId },
+            data: {
+                content,
+                imageUrl
+            }
+        })
+
+        return {
+            status: true,
+            message: 'Post Updated Successfully!'
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
