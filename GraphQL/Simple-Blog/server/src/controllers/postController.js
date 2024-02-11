@@ -87,3 +87,31 @@ export const updatePost = async ({ content, imageUrl, postId, userId }) => {
         throw new Error(error.message);
     }
 }
+
+export const deletePost = async ({ userId, postId }) => {
+    try {
+        const post = await prisma.post.findUnique({
+            where: {
+                userId_id: {
+                    userId,
+                    id: +postId
+                }
+            }
+        })
+
+        if(!post) {
+            throw new Error('No such post exist!');
+        }
+
+        await prisma.post.delete({
+            where: { id: postId }
+        })
+
+        return {
+            status: true,
+            message: "Post deleted successfully!"
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
