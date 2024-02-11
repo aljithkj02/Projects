@@ -23,11 +23,11 @@ export const createPost = async ({ content, imageUrl, userId }) => {
     }
 }
 
-export const getPosts = async ({ id }) => {
+export const getPosts = async ({ id, me }) => {
     try {
         const posts = await prisma.post.findMany({
             where: {
-                userId: {
+                userId: me ? id : {
                     not: id
                 }
             }

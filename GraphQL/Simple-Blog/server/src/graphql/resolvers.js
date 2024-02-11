@@ -6,10 +6,10 @@ const prisma = new PrismaClient();
 
 export const resolvers = {
     Query: {
-        async posts(_, __, context) {
+        async posts(_, { me }, context) {
             const id = context.req.user.id;
 
-            return await getPosts({ id });
+            return await getPosts({ id, me });
         },
         async post(_, { id }) {
             return await getPostById({ id });
